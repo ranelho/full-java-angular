@@ -5,6 +5,7 @@ import com.rlti.clientes.model.repository.ClienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @AllArgsConstructor
@@ -19,5 +20,10 @@ public class ClienteController {
         return repository.save(cliente);
     }
 
-
+    @GetMapping("/{id}")
+    public Cliente acharPorId(@PathVariable Integer id){
+        return repository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
 }
