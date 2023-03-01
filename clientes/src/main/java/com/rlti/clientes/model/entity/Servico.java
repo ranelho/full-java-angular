@@ -2,6 +2,8 @@ package com.rlti.clientes.model.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Servico {
     @Id
@@ -12,4 +14,6 @@ public class Servico {
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+    @Column
+    private BigDecimal valor;
 }
