@@ -2,6 +2,7 @@ package com.rlti.clientes.rest;
 
 import com.rlti.clientes.model.entity.Cliente;
 import com.rlti.clientes.model.repository.ClienteRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente salvar(@RequestBody  Cliente cliente){
+    public Cliente salvar(@RequestBody @Valid Cliente cliente){
         return repository.save(cliente);
     }
 
@@ -41,7 +42,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado ){
+    public void atualizar(@PathVariable Integer id, @RequestBody @Valid Cliente clienteAtualizado ){
         repository
                 .findById(id)
                 .map(cliente -> {
