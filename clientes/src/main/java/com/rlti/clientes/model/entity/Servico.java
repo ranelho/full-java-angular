@@ -9,7 +9,7 @@ public class Servico {
     private Integer id;
     @Column(nullable = false, length = 150)
     private String descricao;
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 }
